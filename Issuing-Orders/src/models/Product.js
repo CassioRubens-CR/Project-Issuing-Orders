@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Products extends Model {
+class Product extends Model {
   static init(sequelize) {
     super.init({
       name: DataTypes.STRING,
-      unitPrice: DataTypes.DECIMAL,
+      unit_price: DataTypes.DECIMAL,
       multiple: DataTypes.INTEGER,
     }, {
       sequelize,
@@ -12,4 +12,4 @@ class Products extends Model {
   }
 }
 
-module.exports = Products;
+module.exports = Product;

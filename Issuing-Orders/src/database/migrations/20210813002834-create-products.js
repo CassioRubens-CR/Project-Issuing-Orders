@@ -13,7 +13,7 @@ module.exports = {
       type: Sequelize.STRING(60),
       allowNull: false,
     },
-    unitPrice: {
+    unit_price: {
       type: Sequelize.DECIMAL(10, 2),
       allowNull: false,
     },
