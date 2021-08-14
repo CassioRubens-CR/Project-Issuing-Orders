@@ -13,9 +13,9 @@ Product.init(connection);
 Order.init(connection);
 Item.init(connection);
 
-Customer.associate(connection.model);
-Product.associate(connection.model);
-Order.associate(connection.model);
-Item.associate(connection.model);
+Customer.associate(connection.models);
+Product.associate(connection.models);
+Order.associate(connection.models);
+Item.associate(connection.models);
 
 module.exports = connection;
