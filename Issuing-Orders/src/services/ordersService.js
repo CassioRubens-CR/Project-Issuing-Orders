@@ -38,9 +38,6 @@ const insertOrder = async (customer_id, items) => {
 
   await validateOrderItems(items);
 
-  console.log("console.log customer_id", customer_id);
-  console.log("console.log items", items);
-
   const order = await Order.create({ customer_id });
 
   await Item.bulkCreate(
