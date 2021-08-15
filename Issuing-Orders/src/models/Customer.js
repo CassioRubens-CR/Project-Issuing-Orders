@@ -12,6 +12,9 @@ class Customer extends Model {
   static associate(models) {
     // hasMany ou belongsToMany.....
     this.belongsToMany(models.Order, { foreignKey: 'customer_id', through: 'orders', as: 'customer' });
+    //////
+    // this.hasMany(models.Order, { foreignKey: "customer_id" });
+
   }
 }
 
