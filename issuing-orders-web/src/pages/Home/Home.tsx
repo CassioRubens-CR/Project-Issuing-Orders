@@ -1,10 +1,11 @@
 import { FC, ReactElement } from "react";
-import PageTitle from "../components/PageTitle/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
+import "./Home.scss"
 
 const Home: FC<{}> = (): ReactElement => {
 
   return (
-    <div id="page-home">
+    <div id="page-home" className="page-home2">
       <PageTitle title="Emissão de pedidos" />
       <h2>Bem vindo a aplicação web que simula a emissão de pedidos.</h2>
       <h4>O usuário desta aplicação poderá ​criar novos pedidos e ​alterar os pedidos existentes.</h4>
@@ -17,6 +18,7 @@ const Home: FC<{}> = (): ReactElement => {
       <h5>Rentabilidade ruim: quando o preço do item é inferior ao preço do produto menos 10%. Ex: se o preço do produto é de R$ 100, a rentabilidade será ruim se o preço for menor​ ​ou​ ​igual​ ​a​ ​R$​ ​89,99.</h5>
       <h4>* Múltiplo de venda:</h4>
       <h5>Alguns produtos só podem ser vendidos em quantidades múltiplas de um determinado número. Por exemplo, o produto X-Wing só pode ser vendido em múltiplos de 2, por exemplo, 2, 4, 6, 8, etc. Já o produto Lightsaber só pode ser vendido em múltiplos de 5, ou seja, 5, 10, 15, 20 e assim por diante. Produtos que não possuem múltiplos podem ser vendidos​ ​em​ ​qualquer​ ​quantidade.</h5>
+      <a className="btn btn-primary" href="/order" role="button">Gerar Pedidos</a>
     </div>
   )
 }
