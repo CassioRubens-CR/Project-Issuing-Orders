@@ -22,15 +22,17 @@ const calculateProductProfitability = async (id, newPrice) => {
 
   const priceProduct = product.unit_price;
   const limitGoodProfitability = priceProduct - priceProduct * 0.1;
+
+  let profitability;
   if (newPrice > priceProduct) {
-    return PROFITABILITY_TYPES.EXCELLENT_PROFITABILITY;
+    profitability = PROFITABILITY_TYPES.EXCELLENT_PROFITABILITY;
   } else if (newPrice >= limitGoodProfitability) {
-    return PROFITABILITY_TYPES.GOOD_PROFITABILITY;
+    profitability = PROFITABILITY_TYPES.GOOD_PROFITABILITY;
   } else {
-    throw new Error(
-      `Não é possível inserir o produto com esse valor: ${PROFITABILITY_TYPES.POOR_PROFITABILITY}`
-    );
+    profitability = PROFITABILITY_TYPES.POOR_PROFITABILITY;
   }
+
+  return profitability;
 };
 
 module.exports = {

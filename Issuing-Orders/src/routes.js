@@ -11,7 +11,7 @@ routes.get('/customers', customersController.getByCustomers);
 
 // products
 routes.get('/products', productsController.getByProducts);
-routes.get("/:id/profitability/:newPrice", productsController.getProductProfitability);
+routes.get("/products/:id/profitability/:newPrice", productsController.getProductProfitability);
 
 // orders
 routes.get("/orders", ordersController.getOrders);

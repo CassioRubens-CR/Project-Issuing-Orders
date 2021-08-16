@@ -2,13 +2,18 @@ const Customer = require("../models/Customer");
 const Product = require("../models/Product");
 const Order = require("../models/Order");
 const Item = require("../models/Item");
+const productService = require("./productService");
+const { PROFITABILITY_TYPES } = require("../enums/profitabilityEnum");
 
-const findOrders = () => {
-  return Order.findAll({
+const findOrders = async () => {
+  //
+  console.log("*******estive aqui findOrders *****");
+  //
+  return await Order.findAll({
     attributes: ["id", "customer_id", "created_at"],
-    // include: { model: Customer, as: "customer", attributes: ["id", "name"] },
-  }
-)};
+    include: { model: Customer, as: "customer", attributes: ["id", "name"] },
+  });
+};
 
 const findOrderById = async (id) => {
   //
@@ -19,7 +24,7 @@ const findOrderById = async (id) => {
     where: { id },
     include: {
       model: Item,
-      as: "item",
+      as: "items",
       attributes: ["id", "order_id", "product_id", "quantity", "unit_price"],
       include: { model: Product, as: "product", attributes: ["id", "name"] },
     },
@@ -38,34 +43,26 @@ const insertOrder = async (customer_id, items) => {
 
   await validateOrderItems(items);
 
-  const order = await Order.create({ customer_id });
+  // const order = await Order.create({ customer_id });
 
-  await Item.bulkCreate(
-    items.map((item) => {
-      return { ...item, order_id: order.id };
-    })
-  );
-
-  // const order = await Order.create(
-  //   {
-  //     customer_id,
-  //     items,
-  //     // items: 
-  //   },
-  //   {
-  //     include: [ {items} ],
-  //     // include: [{
-  //     // model: Item,
-  //     // as: "item",
-  //     // // attributes: ["product_id", "quantity", "unit_price"],
-  //     // include: {
-  //     //   model: Order,
-  //     //   as: "order",
-  //     //   // attributes: ["order_id"],
-  //     //   },
-  //     // }],
-  //   },
+  // await Item.bulkCreate(
+  //   items.map((item) => {
+  //     return { ...item, order_id: order.id };
+  //   })
   // );
+
+  const order = await Order.create(
+    {
+      customer_id,
+      items,
+    },
+    {
+      include: [{
+        model: Item,
+        as: "items",
+      }],
+    },
+  );
 
   return findOrderById(order.id);
 };
@@ -100,15 +97,13 @@ const validateOrderItems = async (items) => {
   });
 };
 
-const validateProfitability = (item, product) => {
+const validateProfitability = async (item, product) => {
   //  
   console.log("**********passei aqui < validade Profitability >*****************");
   //
-  const priceProduct = product.unit_price;
-  const priceOrderItem = item.unit_price;
-  const limitGoodProfitability = priceProduct - priceProduct * 0.1;
+  const profitability = await productService.calculateProductProfitability(product.id, item.unit_price);
 
-  if (priceOrderItem < limitGoodProfitability) {
+  if (profitability === PROFITABILITY_TYPES.POOR_PROFITABILITY) {
     throw new Error("Item with a poor profitability");
   }
 };
