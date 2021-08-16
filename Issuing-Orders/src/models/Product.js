@@ -13,10 +13,11 @@ class Product extends Model {
 
   static associate(models) {
     // hasMany...
-    this.belongsToMany(models.Item, { foreignKey: 'product_id', through: 'items', as: 'product' });
+    // this.belongsToMany(models.Item, { foreignKey: 'product_id', through: 'items', as: 'product' });
 
-    this.hasOne(models.Item, { foreignKey: 'product_id', through: 'items', as: 'item' });
+    // this.hasOne(models.Item, { foreignKey: 'product_id', through: 'items', as: 'item' });
 
+    this.hasMany(models.Item, { foreignKey: "product_id" });
   }
 
 }
