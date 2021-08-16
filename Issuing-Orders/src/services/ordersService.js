@@ -6,9 +6,6 @@ const productService = require("./productService");
 const { PROFITABILITY_TYPES } = require("../enums/profitabilityEnum");
 
 const findOrders = async () => {
-  //
-  console.log("*******estive aqui findOrders *****");
-  //
   return await Order.findAll({
     attributes: ["id", "customer_id", "created_at"],
     include: { model: Customer, as: "customer", attributes: ["id", "name"] },
@@ -16,9 +13,6 @@ const findOrders = async () => {
 };
 
 const findOrderById = async (id) => {
-  //
-  console.log("*******estive aqui findOrderById *****");
-  //
   const order = await Order.findOne({
     attributes: ["id", "customer_id"],
     where: { id },
@@ -42,14 +36,6 @@ const insertOrder = async (customer_id, items) => {
   await validateOrder(customer_id);
 
   await validateOrderItems(items);
-
-  // const order = await Order.create({ customer_id });
-
-  // await Item.bulkCreate(
-  //   items.map((item) => {
-  //     return { ...item, order_id: order.id };
-  //   })
-  // );
 
   const order = await Order.create(
     {
@@ -79,9 +65,6 @@ const validateOrder = async (customer_id) => {
 };
 
 const validateOrderItems = async (items) => {
-  //  
-  console.log("**********passei aqui < validade Ordem item >*****************");
-  //
   items.forEach(async (item) => {
     if (!item.quantity || item.quantity <= 0) {
       throw new Error("Quantity should be more than 0");
@@ -98,9 +81,6 @@ const validateOrderItems = async (items) => {
 };
 
 const validateProfitability = async (item, product) => {
-  //  
-  console.log("**********passei aqui < validade Profitability >*****************");
-  //
   const profitability = await productService.calculateProductProfitability(product.id, item.unit_price);
 
   if (profitability === PROFITABILITY_TYPES.POOR_PROFITABILITY) {
@@ -109,9 +89,6 @@ const validateProfitability = async (item, product) => {
 };
 
 const validateMultiple = (item, product) => {
-  //  
-  console.log("**********passei aqui < validade multiple >*****************");
-  //
   const multiple = product.multiple;
   const quantity = item.quantity;
 
@@ -120,7 +97,7 @@ const validateMultiple = (item, product) => {
   }
 };
 
-const updateOrder2 = async (order_id, customer_id, items) => {
+const updateOrder = async (order_id, customer_id, items) => {
   await validateOrder(customer_id);
   await validateOrderItems(items);
 
@@ -168,6 +145,6 @@ module.exports = {
   findOrders,
   findOrderById,
   insertOrder,
-  updateOrder2,
+  updateOrder,
   removeOrder,
 };

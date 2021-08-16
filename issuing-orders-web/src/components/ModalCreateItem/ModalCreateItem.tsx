@@ -126,9 +126,6 @@ const ModalCreateItem: FC<ModalItemProp> = ({
                 </option>
               ))}
             </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              O <strong>produto</strong> é obrigatório.
-            </Form.Control.Feedback>
           </Form.Group>
           
           {!!itemForm.product_id && itemForm.product_id > 0 && (

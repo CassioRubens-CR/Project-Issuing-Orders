@@ -166,7 +166,7 @@ const OrderForm: FC<{}> = (): ReactElement => {
 
   return (
     <>
-      <PageTitle title="Inserir Novo Pedido" />
+      <PageTitle title={id ? 'Alterar Pedido' : 'Inserir Novo Pedido' } />
 
       {showFeedbackUser.show && (
         <Alert
@@ -203,9 +203,6 @@ const OrderForm: FC<{}> = (): ReactElement => {
                 </option>
               ))}
             </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              Cliente é obrigatório
-            </Form.Control.Feedback>
           </Form.Group>
         </Row>
 

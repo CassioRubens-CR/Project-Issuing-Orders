@@ -18,9 +18,9 @@ const TableItems: FC<TableItemProp> = ({ items }): ReactElement => {
       </thead>
       <tbody>
         {items.length ? (
-          items.map((item) => {
+          items.map((item, index) => {
             return (
-              <tr key={item.product_id}>
+              <tr key={index}>
                 <td>{item.product?.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.unit_price}</td>

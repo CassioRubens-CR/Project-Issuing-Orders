@@ -41,7 +41,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const { customer_id, items } = req.body;
-      const order = await ordersService.updateOrder2(id, customer_id, items);
+      const order = await ordersService.updateOrder(id, customer_id, items);
       return res.status(200).json(order);
     } catch (err) {
       return res.status(400).json({
