@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/" className="title-bar">
-            Mercos - Pedidos de compra
+            Aplicação Web de Emissão de Pedidos
           </Navbar.Brand>
           <AppMenu />
         </Container>

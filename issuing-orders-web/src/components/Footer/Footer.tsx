@@ -14,7 +14,7 @@ const Footer = () => {
             <li className="ms-3">
               <a
                 className="text-muted"
-                href="https://github.com"
+                href="https://cassiorubens-cr.github.io/portfolio/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -24,7 +24,7 @@ const Footer = () => {
             <li className="ms-3">
               <a
                 className="text-muted"
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/c%C3%A1ssio-rubens/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
