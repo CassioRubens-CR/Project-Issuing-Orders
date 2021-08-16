@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('products',
     [
       {
-        name: 'Millenium​ ​Falcon',
+        name: 'Millenium​ Falcon',
         unit_price: 550000,
         multiple: 1,
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
